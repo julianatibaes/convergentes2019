@@ -15,3 +15,6 @@ Servidor SOAP simples que contém uma configuração simples do header.
 
 ## Primos consumer (cliente) SOAP
 Aplicação consumidora, cujas classes foram geradas a partir de um contract, para consumir os dados do servidor.
+
+## gip security
+Servidor REST simples que contém uma configuração simples do oauth2.
