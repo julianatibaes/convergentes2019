@@ -1,34 +1,17 @@
 package edu.up.bsi.conv.gipsecurity;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
+import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 
-@EnableWebSecurity
+@Configuration
 @EnableAuthorizationServer
-@EnableResourceServer
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
-	
-	@Bean
+public class SecurityConfiguration extends AuthorizationServerConfigurerAdapter {
+
 	@Override
-	protected AuthenticationManager authenticationManager() throws Exception {
-		return super.authenticationManager();
-	}
-	
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication().withUser("helena").password("123").roles("ADMIN");
-	}
-	
-	@SuppressWarnings("deprecation")
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return NoOpPasswordEncoder.getInstance();
+	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+		clients.inMemory().withClient("juliana").secret("secret").authorizedGrantTypes("authorization_code")
+				.scopes("read").authorities("CLIENT");
 	}
 }

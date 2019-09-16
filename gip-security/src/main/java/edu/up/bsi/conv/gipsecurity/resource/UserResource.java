@@ -3,6 +3,7 @@ package edu.up.bsi.conv.gipsecurity.resource;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,16 +16,16 @@ import org.springframework.web.bind.annotation.RestController;
 import edu.up.bsi.conv.gipsecurity.entity.User;
 import edu.up.bsi.conv.gipsecurity.repository.IUserRepository;
 
-@RestController
-@RequestMapping("/user")
+@Controller
 public class UserResource {
 	
 	@Autowired
 	private IUserRepository repository;
 	
-	@GetMapping(path = "/get_all", produces="application/json") 
+	@GetMapping(path = "/user/getUsersList", produces="application/json") 
+	@ResponseBody
 	//@GetMapping(produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-	public @ResponseBody Iterable<User> listAll() {
+	public Iterable<User> listAll() {
 		Iterable<User> list = repository.findAll();
 		return list;
 	}
