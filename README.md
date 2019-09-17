@@ -24,3 +24,6 @@ Aplicação consumidora, cujas classes foram geradas a partir de um contract, pa
 ## gip security
  - Servidor REST simples que contém uma configuração simples do oauth2.
  - Continuação do projeto gip
+
+## gip client
+ - Servidor REST simples que contém uma configuração de consumo do oauth2
